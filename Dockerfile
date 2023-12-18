@@ -1,4 +1,4 @@
-FROM debian:stretch-slim as build
+FROM debian:buster-slim as build
 
 # Install our build dependencies
 RUN apt-get update \
@@ -29,7 +29,7 @@ COPY . /usr/local/src/
 RUN ./zcutil/build.sh -j$(nproc)
 RUN ./zcutil/fetch-params.sh
 
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 # Add our user and group first to ensure consistency
 RUN groupadd -r bitcoinz && useradd -r -d /bitcoinz -g bitcoinz bitcoinz
